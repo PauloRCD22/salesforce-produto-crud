@@ -1,25 +1,28 @@
 <template>
-    <lightning-card title="Gerenciamento de Produtos" icon-name="standard:product">
-        
-        <!-- Formulário para adicionar produto -->
-        <lightning-input label="Nome" value={nome} onchange={handleNomeChange}></lightning-input>
-        <lightning-input type="number" label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
-        <lightning-input type="number" label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
-        <lightning-button label="Adicionar Produto" variant="brand" onclick={handleCreate}></lightning-button>
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+            <!-- Seção de Inserção de Produto -->
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input label="Nome" value={nome} onchange={handleNomeChange}></lightning-input>
+                <lightning-input label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
+                <lightning-input label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
+                
+                <lightning-button label="Criar Produto" onclick={handleCreate}></lightning-button>
+                <lightning-button label="Atualizar Produto" onclick={handleUpdate}></lightning-button>
+            </div>
 
-        <hr />
-
-        <!-- Lista de Produtos -->
-        <template if:true={produtos}>
-            <template for:each={produtos} for:item="produto">
-                <div key={produto.Id} class="produto-card">
-                    <p><strong>Nome:</strong> {produto.Nome__c}</p>
-                    <p><strong>Preço:</strong> {produto.Preco__c}</p>
-                    <p><strong>Estoque:</strong> {produto.Estoque__c}</p>
-                    <lightning-button label="Editar" onclick={handleEdit} data-id={produto.Id}></lightning-button>
-                    <lightning-button label="Excluir" onclick={handleDelete} data-id={produto.Id} variant="destructive"></lightning-button>
-                </div>
-            </template>
-        </template>
+            <!-- Seção de Lista de Produtos -->
+            <div class="slds-col slds-size_1-of-2">
+                <template if:true={produtos}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={produtos}
+                        columns={columns}
+                        hide-checkbox-column="true"
+                        onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </template>
+            </div>
+        </div>
     </lightning-card>
 </template>

@@ -1,0 +1,19 @@
+.slds-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.slds-col {
+    flex: 1;
+    padding: 1rem;
+}
+
+.slds-size_1-of-2 {
+    flex: 1;
+    max-width: 48%;
+}
+
+.lightning-card {
+    padding: 2rem;
+}
