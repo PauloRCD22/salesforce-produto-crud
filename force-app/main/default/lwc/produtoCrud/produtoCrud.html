@@ -3,11 +3,22 @@
         <lightning-card>
             <div class="slds-grid slds-wrap">
                 <!-- Seção de Inserção de Produto -->
-                <div class="slds-col slds-size_1-of-2">
-                    <lightning-input label="Produto" value={nome} onchange={handleNomeChange}></lightning-input>
-                    <lightning-input label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
-                    <lightning-input label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
-                    
+                <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                    <lightning-input class="input-field" label="Produto" value={nome} onchange={handleNomeChange}></lightning-input>
+                    <template if:true={erroNome}>
+                        <p class="erro">{erroNome}</p>
+                    </template>
+
+                    <lightning-input class="input-field" type="text" label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
+                    <template if:true={erroPreco}>
+                        <p class="erro">{erroPreco}</p>
+                    </template>
+
+                    <lightning-input class="input-field" type="number" label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
+                    <template if:true={erroEstoque}>
+                        <p class="erro">{erroEstoque}</p>
+                    </template>
+
                     <lightning-button label="Criar Produto" onclick={handleCreate}></lightning-button>
                     <lightning-button label="Atualizar Produto" onclick={handleUpdate}></lightning-button>
                 </div>

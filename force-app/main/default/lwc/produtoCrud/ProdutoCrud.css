@@ -2,22 +2,45 @@
     max-width: 90%;
     margin: 0 auto;
     padding: 2rem;
-    padding-left: 3rem; /* Empurra mais para a direita */
+    padding-left: 3rem;
     padding-right: 3rem;
 }
 
 .slds-col {
-    margin-bottom: 1rem; /* Adiciona espaçamento entre as colunas */
+    margin-bottom: 1rem;
 }
 
 lightning-button {
-    margin-top: 1rem; /* Espaçamento entre os botões */
+    margin-top: 1rem;
     padding-left: 3rem;
     padding-right: 3rem;
+    border: 1px solid #ccc; /* Adiciona borda */
 }
 
 lightning-input {
-    margin-bottom: 1rem; /* Espaço entre os inputs */
+    margin-bottom: 1rem;
     padding-left: 3rem;
     padding-right: 3rem;
+    border: 1px solid #ccc; /* Adiciona borda */
+}
+
+/* Adiciona margens usando classes utilitárias do Salesforce */
+.slds-button {
+    margin-top: 1rem;
+}
+
+.slds-input {
+    margin-bottom: 1rem;
+}
+
+/* Corrige a classe de erro com margens */
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Usando classe utilitária da Salesforce para espaçamento */
+.slds-p-around_medium {
+    padding: 1rem;
 }
