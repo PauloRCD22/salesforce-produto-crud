@@ -1,19 +1,23 @@
-.slds-grid {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-left: 3rem; /* Empurra mais para a direita */
+    padding-right: 3rem;
 }
 
 .slds-col {
-    flex: 1;
-    padding: 1rem;
+    margin-bottom: 1rem; /* Adiciona espaçamento entre as colunas */
 }
 
-.slds-size_1-of-2 {
-    flex: 1;
-    max-width: 48%;
+lightning-button {
+    margin-top: 1rem; /* Espaçamento entre os botões */
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
-.lightning-card {
-    padding: 2rem;
+lightning-input {
+    margin-bottom: 1rem; /* Espaço entre os inputs */
+    padding-left: 3rem;
+    padding-right: 3rem;
 }

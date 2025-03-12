@@ -1,28 +1,30 @@
 <template>
-    <lightning-card>
-        <div class="slds-grid slds-wrap">
-            <!-- Seção de Inserção de Produto -->
-            <div class="slds-col slds-size_1-of-2">
-                <lightning-input label="Nome" value={nome} onchange={handleNomeChange}></lightning-input>
-                <lightning-input label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
-                <lightning-input label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
-                
-                <lightning-button label="Criar Produto" onclick={handleCreate}></lightning-button>
-                <lightning-button label="Atualizar Produto" onclick={handleUpdate}></lightning-button>
-            </div>
+    <div class="container">
+        <lightning-card>
+            <div class="slds-grid slds-wrap">
+                <!-- Seção de Inserção de Produto -->
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input label="Produto" value={nome} onchange={handleNomeChange}></lightning-input>
+                    <lightning-input label="Preço" value={preco} onchange={handlePrecoChange}></lightning-input>
+                    <lightning-input label="Estoque" value={estoque} onchange={handleEstoqueChange}></lightning-input>
+                    
+                    <lightning-button label="Criar Produto" onclick={handleCreate}></lightning-button>
+                    <lightning-button label="Atualizar Produto" onclick={handleUpdate}></lightning-button>
+                </div>
 
-            <!-- Seção de Lista de Produtos -->
-            <div class="slds-col slds-size_1-of-2">
-                <template if:true={produtos}>
-                    <lightning-datatable
-                        key-field="Id"
-                        data={produtos}
-                        columns={columns}
-                        hide-checkbox-column="true"
-                        onrowaction={handleRowAction}>
-                    </lightning-datatable>
-                </template>
+                <!-- Seção de Lista de Produtos -->
+                <div class="slds-col slds-size_1-of-2">
+                    <template if:true={produtos}>
+                        <lightning-datatable
+                            key-field="Id"
+                            data={produtos}
+                            columns={columns}
+                            hide-checkbox-column="true"
+                            onrowaction={handleRowAction}>
+                        </lightning-datatable>
+                    </template>
+                </div>
             </div>
-        </div>
-    </lightning-card>
+        </lightning-card>
+    </div>
 </template>

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+
 import ProdutoCrud from 'c/produtoCrud';
 
 describe('c-produto-crud', () => {

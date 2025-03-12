@@ -54,14 +54,15 @@ export default class ProdutoCrud extends LightningElement {
     }
 
     handlePrecoChange(event) {
-        let precoString = event.target.value.replace(',', '.');
-        this.preco = parseFloat(precoString);
-        if (isNaN(this.preco)) {
-            this.preco = 0;
-        }
-        const precoFormatado = this.preco.toFixed(2);
-        event.target.value = `R$ ${precoFormatado.replace('.', ',')}`;
+        // Remove qualquer caractere que não seja número, ponto ou vírgula
+        let precoString = event.target.value.replace(/[^0-9.,]/g, '');
+    
+        // Atualiza o valor de 'preco' com o valor válido
+        this.preco = precoString;
     }
+    
+    
+    
 
     handleEstoqueChange(event) {
         this.estoque = event.target.value;
@@ -69,14 +70,25 @@ export default class ProdutoCrud extends LightningElement {
 
     // Adiciona um novo produto
     handleCreate() {
-        const precoParaSalvar = parseFloat(this.preco.toString().replace('R$', '').replace(',', '.'));
-        createProduto({ produto: { Nome__c: this.nome, Preco__c: precoParaSalvar, Estoque__c: this.estoque } })
-            .then(() => {
-                return refreshApex(this.wiredProdutos);
-            })
-            .catch(error => {
-                console.error('Erro ao criar produto:', error);
-            });
+        // Substitui a vírgula por ponto, se necessário
+        const precoParaSalvar = this.preco.replace(',', '.');  // Aqui substituímos a vírgula por ponto
+    
+        // Converte para número (garantindo que seja um valor numérico válido)
+        const precoNumerico = parseFloat(precoParaSalvar);
+    
+        // Verifica se o valor é válido
+        if (!isNaN(precoNumerico)) {
+            // Agora você pode salvar o produto, usando o preço formatado
+            createProduto({ produto: { Nome__c: this.nome, Preco__c: precoNumerico, Estoque__c: this.estoque } })
+                .then(() => {
+                    return refreshApex(this.wiredProdutos);
+                })
+                .catch(error => {
+                    console.error('Erro ao criar produto:', error);
+                });
+        } else {
+            console.error('Preço inválido');
+        }
     }
 
     // Exclui um produto
@@ -105,7 +117,9 @@ export default class ProdutoCrud extends LightningElement {
 
     // Atualiza o produto após edição
     handleUpdate() {
-        const precoParaSalvar = parseFloat(this.preco.toString().replace('R$', '').replace(',', '.'));
+        // Remove a vírgula e converte para número
+        const precoParaSalvar = parseFloat(this.preco.replace('R$', '').replace(',', '.'));
+    
         updateProduto({ produtoId: this.produtoId, nome: this.nome, preco: precoParaSalvar, estoque: this.estoque })
             .then(() => {
                 return refreshApex(this.wiredProdutos);
